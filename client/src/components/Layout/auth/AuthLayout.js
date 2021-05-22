@@ -20,11 +20,11 @@ const AuthLayout = (props) => {
     return(
       <Container component="main" maxWidth={false} className={classes.root}>
           <Grid container direction="row">
-            <Grid item sm={5} xs={12}>
+            <Grid item sm={4} xs={12}>
                <Banner/>
             </Grid>
 
-            <Grid item sm={7} xs={12} className={classes.FormContainer}>
+            <Grid item sm={8} xs={12} className={classes.FormContainer}>
                 {props.children}
             </Grid>
           </Grid>
