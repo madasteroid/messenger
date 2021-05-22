@@ -16,30 +16,26 @@ import { register } from "../../store/utils/thunkCreators";
 const useStyles = makeStyles( () => ({
   textField: {
     margin: "10px 0",
-    fontFamily: "OpenSans",
   },
   header: {
     padding: "40px 0",
   },
   subtitle1:{
-    paddingRight: "40px",
+    paddingRight: "30px",
     color: "#B0B0B0",
-    fontFamily: "OpenSans",
-    fontWeight: "semiBold"
   },
   subtitle2:{
-    fontFamily: "OpenSans",
+    fontSize: "32px",
     fontWeight: "bold",
     margin: "20px 0"
 
   },
   button:{
-    fontFamily: "OpenSans",
     fontSize: "20px",
     fontWeight: "bold",
     width: "200px",
     height: "70px",
-    margin: "40px 0"
+    margin: "40px 0",
   }
 }));
 const Register = (props) => {

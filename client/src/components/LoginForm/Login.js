@@ -16,9 +16,8 @@ const useStyles = makeStyles(() => ({
     padding: "40px 0",
   },
   subtitle1:{
-    paddingRight: "40px",
+    paddingRight: "30px",
     color: "#B0B0B0",
-    fontFamily: "OpenSans",
     fontWeight: "semiBold"
   },
   textField: {
@@ -26,12 +25,11 @@ const useStyles = makeStyles(() => ({
     fontFamily: "OpenSans",
   },
   subtitle2:{
-    fontFamily: "OpenSans",
+    fontSize: "32px",
     fontWeight: "bold",
 
   },
   button:{
-    fontFamily: "OpenSans",
     fontSize: "20px",
     fontWeight: "bold",
     width: "200px",
