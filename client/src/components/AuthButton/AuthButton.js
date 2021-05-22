@@ -7,8 +7,9 @@ const useStyles = makeStyles(() => ({
         width: "200px",
         height: "65px",
         boxShadow: "0px 2px 12px 0px rgba(74, 106, 149, 0.2)",
-        fontFamily: "OpenSans",
-        fontSize: "18px",
+        fontSize: "16px",
+        fontWeight: "bold",
+        fontColor: "#3A8DFF"
     },
 }));
 
