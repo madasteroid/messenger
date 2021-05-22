@@ -37,7 +37,10 @@ const useStyles = makeStyles(theme => ({
         padding: "100px",
     },
     subtitle1:{
-        fontFamily: "OpenSans",
+        color: "#fff",
+        fontSize: "29px",
+        margin: "20px",
+        lineHeight: "50px"
     },
 }));
 
@@ -54,7 +57,7 @@ const Banner = () => {
                         <Bubble color="#fff" />
                     </Grid>
                     <Grid item>
-                        <Typography variant="h3" component="h2" align="center" className={classes.subtitle1}>
+                        <Typography variant="h4" component="h2" align="center" className={classes.subtitle1}>
                             Converse with anyone with any language
                         </Typography>
                     </Grid>
