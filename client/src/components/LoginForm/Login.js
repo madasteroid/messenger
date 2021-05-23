@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
   },
   subtitle1:{
     paddingRight: "30px",
+    paddingBottom: "10px",
     color: "#B0B0B0",
     fontWeight: "semiBold"
   },
