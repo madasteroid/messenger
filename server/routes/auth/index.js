@@ -26,9 +26,14 @@ router.post("/register", async (req, res, next) => {
         process.env.SESSION_SECRET,
         { expiresIn: 86400 }
     );
+    const options = {
+      httpOnly: true,
+      secure: true,
+      sameSite: true
+    }
+    res.cookie("token", token, options);
     res.json({
       ...user.dataValues,
-      token,
     });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
