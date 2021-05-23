@@ -1,19 +1,47 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AuthButton from "../../components/AuthButton/AuthButton";
 import {
   Grid,
   Box,
   Typography,
-  Button,
   FormControl,
   TextField,
-  FormHelperText,
+  FormHelperText, makeStyles,
 } from "@material-ui/core";
-import { register } from "./store/utils/thunkCreators";
+import { register } from "../../store/utils/thunkCreators";
 
-const Login = (props) => {
+
+const useStyles = makeStyles( () => ({
+  textField: {
+    margin: "10px 0",
+  },
+  header: {
+    padding: "40px 0",
+  },
+  subtitle1:{
+    paddingRight: "30px",
+    paddingBottom: "10px",
+    color: "#B0B0B0",
+  },
+  subtitle2:{
+    fontSize: "32px",
+    fontWeight: "bold",
+    margin: "20px 0"
+
+  },
+  button:{
+    fontSize: "20px",
+    fontWeight: "bold",
+    width: "200px",
+    height: "70px",
+    margin: "40px 0",
+  }
+}));
+const Register = (props) => {
   const history = useHistory();
+  const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -38,16 +66,30 @@ const Login = (props) => {
 
   return (
     <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
-        </Grid>
+      <Grid
+          container
+          justify="flex-end"
+          alignItems="center"
+          className={classes.header}
+          component="header"
+      >
+        <Typography variant="subtitle1" className={classes.subtitle1}>Already have an account?</Typography>
+        <AuthButton color="primary" onClick={() => history.push("/login")}>Login</AuthButton>
+      </Grid>
+      <Box width="65%">
+        <Typography
+            variant="h5"
+            component="h1"
+            className={classes.subtitle2}
+        >
+          Create an account.
+        </Typography>
         <form onSubmit={handleRegister}>
           <Grid>
             <Grid>
-              <FormControl>
+              <FormControl variant="outlined" fullWidth margin="normal">
                 <TextField
+                    className={classes.textField}
                   aria-label="username"
                   label="Username"
                   name="username"
@@ -57,8 +99,9 @@ const Login = (props) => {
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl>
+              <FormControl variant="outlined" fullWidth margin="normal">
                 <TextField
+                    className={classes.textField}
                   label="E-mail address"
                   aria-label="e-mail address"
                   type="email"
@@ -68,8 +111,9 @@ const Login = (props) => {
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
+              <FormControl error={!!formErrorMessage.confirmPassword} variant="outlined" fullWidth margin="normal">
                 <TextField
+                    className={classes.textField}
                   aria-label="password"
                   label="Password"
                   type="password"
@@ -77,14 +121,15 @@ const Login = (props) => {
                   name="password"
                   required
                 />
-                <FormHelperText>
+                <FormHelperText >
                   {formErrorMessage.confirmPassword}
                 </FormHelperText>
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
+              <FormControl error={!!formErrorMessage.confirmPassword} variant="outlined" fullWidth margin="normal">
                 <TextField
+                    className={classes.textField}
                   label="Confirm Password"
                   aria-label="confirm password"
                   type="password"
@@ -97,9 +142,11 @@ const Login = (props) => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Button type="submit" variant="contained" size="large">
+            <Grid container justify="center">
+            <AuthButton type="submit" variant="contained" size="large" color="primary" className={classes.button}>
               Create
-            </Button>
+            </AuthButton>
+            </Grid>
           </Grid>
         </form>
       </Box>
@@ -121,4 +168,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
