@@ -9,22 +9,22 @@ router.post("/register", async (req, res, next) => {
 
     if (!username || !password || !email) {
       return res
-        .status(400)
-        .json({ error: "Username, password, and email required" });
+          .status(400)
+          .json({ error: "Username, password, and email required" });
     }
 
     if (password.length < 6) {
       return res
-        .status(400)
-        .json({ error: "Password must be at least 6 characters" });
+          .status(400)
+          .json({ error: "Password must be at least 6 characters" });
     }
 
     const user = await User.create(req.body);
 
     const token = jwt.sign(
-      { id: user.dataValues.id },
-      process.env.SESSION_SECRET,
-      { expiresIn: 86400 }
+        { id: user.dataValues.id },
+        process.env.SESSION_SECRET,
+        { expiresIn: 86400 }
     );
     res.json({
       ...user.dataValues,
@@ -60,13 +60,18 @@ router.post("/login", async (req, res, next) => {
       res.status(401).json({ error: "Wrong username and/or password" });
     } else {
       const token = jwt.sign(
-        { id: user.dataValues.id },
-        process.env.SESSION_SECRET,
-        { expiresIn: 86400 }
+          { id: user.dataValues.id },
+          process.env.SESSION_SECRET,
+          { expiresIn: 86400 }
       );
+      const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: true
+      }
+      res.cookie("token", token, options);
       res.json({
         ...user.dataValues,
-        token,
       });
     }
   } catch (error) {
@@ -75,6 +80,10 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.delete("/logout", (req, res, next) => {
+  res.cookie("token", "none", {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true,
+  });
   res.sendStatus(204);
 });
 
