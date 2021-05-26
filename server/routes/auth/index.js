@@ -85,8 +85,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.delete("/logout", (req, res, next) => {
-  res.cookie("token", "none", {
-    expires: new Date(Date.now() + 5 * 1000),
+  res.clearCookie("token", {
     httpOnly: true,
   });
   res.sendStatus(204);
